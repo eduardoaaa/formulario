@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 90%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Cadastro Simples</h1>
+    
+    <form id="cadastroForm">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+    
+    <h2>Cadastros Realizados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaCadastros">
+        </tbody>
+    </table>
+
+    <script>
+        // Função que será chamada ao enviar o formulário
+        document.getElementById('cadastroForm').onsubmit = function(evento) {
+            evento.preventDefault(); // Impede o envio padrão do formulário
+
+            // Pegar valores dos campos
+            var nome = document.getElementById('nome').value;
+            var email = document.getElementById('email').value;
+
+            // Criar nova linha e células na tabela
+            var tabela = document.getElementById('tabelaCadastros');
+            var novaLinha = tabela.insertRow();
+            var colunaNome = novaLinha.insertCell(0);
+            var colunaEmail = novaLinha.insertCell(1);
+
+            // Adicionar os valores nas células
+            colunaNome.innerHTML = nome;
+            colunaEmail.innerHTML = email;
+
+            // Limpar os campos do formulário
+            document.getElementById('cadastroForm').reset();
+        }
+    </script>
+</body>
+</html>
